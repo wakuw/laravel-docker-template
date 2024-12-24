@@ -20,3 +20,4 @@
 // });
 
 Route::get('/todo', 'todoController@index');
+Route::get('/todo/create', 'TodoController@create');
