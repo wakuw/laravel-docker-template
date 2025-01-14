@@ -22,7 +22,7 @@ class TodoController extends Controller
         //$todos = $todo->all();
         $todo = $this->todo->all();
 
-        return view('todo.index', ['okabe' => $todos]); //②第一引数をtest.indexにするには？③変数名「okabe」で一覧表示
+        return view('todo.index', ['okabe' => $todo]); //②第一引数をtest.indexにするには？③変数名「okabe」で一覧表示
     }                             //↑こっちは送る先で使用する変数の名前
 
     public function create()
@@ -30,7 +30,7 @@ class TodoController extends Controller
         return view('todo.create',);
     }
 
-                            //↓メゾットインジェクション：$reqest = new Request();を行っている
+                            //↓メゾットインジェクション：$request = new Request();を行っている
     public function store(Request $request) //①代入されている値＋データ型調べる→object型ならnamespaceとクラス名
     {
         $inputs = $request->all();
@@ -55,5 +55,13 @@ class TodoController extends Controller
     {
         $todo = $this->todo->find($id);
         return view('todo.edit', ['todo' => $todo]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $inputs = $request->all();
+        $todo = $this->todo->find($id);
+        $todo->fill($inputs)->save();
+        return redirect()->route('todo.show', $todo->id);
     }
 }
