@@ -70,3 +70,14 @@ CSRF対策のためのトークンが含まれたinputタグを生成するた�
 
 ### {{ }}とは何の省略系か
 <?php echo ?>の省略形
+
+
+
+## 追加課題
+
+### public function store(Request $request)代入されている値＋データ型調べる→object型ならnamespaceとクラス名
+
+
+### 「return view('todo.index', ['todos' => $todos]);」第一引数をtest.indexにするには？
+
+### 「return view('todo.index', ['todos' => $todos]);」変数名「okabe」で一覧表示
