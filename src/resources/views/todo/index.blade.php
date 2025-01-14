@@ -3,10 +3,10 @@
       <div class="row justify-content-center">
         <div class="col-md-8">
           <p class="text-left">
-            <a class="btn btn-success" href={{ route('todo.create') }}>ToDoを追加</a>
+            <a class="btn btn-success" href="{{ route('todo.create') }}">ToDoを追加</a>
             <!-- ↑④route関数の引数がtodo.indexの時に返すURLは？ -->
           </p>
-          <div class="card">
+          <div class=" card">
             <div class="card-header">
               ToDo一覧
             </div>

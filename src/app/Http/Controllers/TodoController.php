@@ -18,8 +18,9 @@ class TodoController extends Controller
 
     public function index()
     {
+        //$todo = new Todo();
+        //$todos = $todo->all();
         $todo = $this->todo->all();
-        $todos = $todo->all();
 
         return view('todo.index', ['okabe' => $todos]); //②第一引数をtest.indexにするには？③変数名「okabe」で一覧表示
     }                             //↑こっちは送る先で使用する変数の名前
@@ -29,9 +30,14 @@ class TodoController extends Controller
         return view('todo.create',);
     }
 
+                            //↓メゾットインジェクション：$reqest = new Request();を行っている
     public function store(Request $request) //①代入されている値＋データ型調べる→object型ならnamespaceとクラス名
     {
         $inputs = $request->all();
+
+        // $todo = new Todo();
+        // $todo->fill($inputs); //再追加課題：39行目前後の$todoの違い確認
+        // $todo->save();
 
         $this->todo->fill($inputs);
         $this->todo->save();
@@ -43,5 +49,11 @@ class TodoController extends Controller
     {
         $todo = $this->todo->find($id);
         return view('todo.show', ['todo' => $todo]);
+    }
+
+    public function edit($id)
+    {
+        $todo = $this->todo->find($id);
+        return view('todo.edit', ['todo' => $todo]);
     }
 }
