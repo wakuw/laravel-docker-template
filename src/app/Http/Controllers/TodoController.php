@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
+use App\Http\Requests\TodoRequest;
 
 use App\Todo;
 use Illuminate\Support\Facades\Auth;
@@ -30,8 +31,8 @@ class TodoController extends Controller
         return view('todo.create',);
     }
 
-                            //↓メゾットインジェクション：$request = new Request();を行っている
-    public function store(Request $request) //①代入されている値＋データ型調べる→object型ならnamespaceとクラス名
+    //↓メゾットインジェクション：$request = new Request();を行っている
+    public function store(TodoRequest $request) //①代入されている値＋データ型調べる→object型ならnamespaceとクラス名
     {
         $inputs = $request->all();
 
@@ -57,7 +58,7 @@ class TodoController extends Controller
         return view('todo.edit', ['todo' => $todo]);
     }
 
-    public function update(Request $request, $id)
+    public function update(TodoRequest $request, $id)
     {
         $inputs = $request->all();
         $todo = $this->todo->find($id);
